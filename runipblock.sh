@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# This script will read from the list of servers in the file ipblacklistservers
+# This script will read from the list of servers in the file blacklistservers
 # copy the block list and block script to each server specified in the list
 # then execute the script ipblock.sh to block the servers
 
-while read ipblacklistservers
+while read blacklistservers
 do
-  scp ipblock.sh ipblacklistmaster ipv6blacklistmaster $ipblacklistservers:~
-  echo Blocking IPs on $ipblacklistservers
-  ssh -n $ipblacklistservers '(./ipblock.sh &)'
+  scp ipblock.sh blacklist blacklistv6 $blacklistservers:~
+  echo Blocking IPs on $blacklistservers
+  ssh -n $blacklistservers '(./ipblock.sh &)'
   # need to test for success/failure here
-  echo $ipblacklistservers Done
-done < ipblacklistservers
+  echo $blacklistservers Done
+done < blacklistservers
