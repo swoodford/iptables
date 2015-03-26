@@ -12,3 +12,11 @@ do
 		fi
 	fi
 done < blacklist
+
+# Append IPs to blacklist
+if [ -f blacklist3 ]; then
+	cat blacklist3 >> blacklist
+fi
+
+# Remove temp file
+rm blacklist3
